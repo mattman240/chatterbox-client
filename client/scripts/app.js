@@ -146,7 +146,8 @@ $(document).ready(function() {
   $(document).on('click','#clear', function(e) {
     e.preventDefault();
     // app.message.text = $(document).find('#messageText').val();
-    app.clearMessages();
+    app.clearMessages()
+    app.fetch();
   })
   $(document).on('change','#rooms', function(e) {
     e.preventDefault();
@@ -166,14 +167,18 @@ $(document).ready(function() {
 
     app.friends.push($(e.target).text());
     // app.message.text = $(document).find('#messageText').val();
-    console.log(app.friends)
+    // app.friends
+    //friendsDisplay
+    $("#friendsDisplay").append('<li>' + $(e.target).text() + '</li>')
 
-
+  
   })
   $(document).on('change','#friends', function(e) {
-    e.preventDefault();
-    // app.message.text = $(document).find('#messageText').val();
-    app.renderFriends(app.friends)
-
+    e.preventDefault()
+    if(this.checked){
+      app.renderFriends(app.friends);
+    } else {
+      app.renderRoom();
+    }
   })
 })
